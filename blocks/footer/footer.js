@@ -166,7 +166,47 @@ export default async function decorate(block) {
       })($storeSwitcherBtn);
     }
   }
+  // Layout: every section is a column, except the last one (legal row) when there are several
+  const sections = [...fragment.querySelectorAll(':scope > .section')];
+  const legal = sections.length > 1 ? sections.pop() : null;
+  const columns = document.createElement('div');
+  columns.className = 'footer-columns';
+  columns.append(...sections);
+  footer.append(columns);
+  if (legal) {
+    legal.classList.add('footer-legal');
+    footer.append(legal);
+  }
   while (fragment.firstElementChild) footer.append(fragment.firstElementChild);
+
+  // Paragraphs made only of icon links (social, app stores): show the icons, keep link text for screen readers
+  footer.querySelectorAll('p').forEach((p) => {
+    const links = [...p.querySelectorAll('a')];
+    const rest = p.cloneNode(true);
+    rest.querySelectorAll('a').forEach((a) => a.remove());
+    if (links.length && links.every((a) => a.querySelector('.icon')) && !rest.textContent.trim()) {
+      p.classList.add('footer-icon-links');
+      links.forEach((a) => {
+        a.className = '';
+        a.closest('.button-container')?.classList.remove('button-container');
+        const label = document.createElement('span');
+        label.className = 'footer-icon-label';
+        [...a.childNodes].filter((n) => n.nodeType === Node.TEXT_NODE && n.textContent.trim())
+          .forEach((n) => label.append(n));
+        a.append(label);
+      });
+    }
+  });
+
+  // Back to top
+  const backToTop = document.createElement('button');
+  backToTop.type = 'button';
+  backToTop.className = 'footer-back-to-top';
+  backToTop.setAttribute('aria-label', 'Back to top');
+  backToTop.addEventListener('click', () => {
+    window.scrollTo({ top: 0, behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth' });
+  });
+  footer.append(backToTop);
 
   block.append(footer);
 }

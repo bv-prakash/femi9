@@ -128,6 +128,19 @@
   --type-fixed-font-family: adobe-clean, "Roboto Mono", menlo, consolas, "Liberation Mono", monospace, system-ui, sans-serif;
   --background-color: var(--color-neutral-50);
   --nav-height: 6.4rem;
+  --announcement-height: 3.6rem;
+
+  /* Femi9 brand */
+  --color-femi9-terracotta: #c67b52;
+  --color-femi9-text: #424242;
+  --color-femi9-sale: #e50800;
+  --color-femi9-border: #f6f6f6;
+}
+
+@media (min-width: 900px) {
+  :root {
+    --nav-height: 7.2rem;
+  }
 }
 
 /* fallback font */
@@ -163,7 +176,7 @@ body:not(.appear) {
 
 header {
   grid-row: 1;
-  height: var(--nav-height);
+  height: calc(var(--nav-height) + var(--announcement-height));
 }
 
 main {

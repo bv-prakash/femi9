@@ -12,7 +12,12 @@ header .nav-wrapper {
   width: 100%;
   z-index: 3;
   position: fixed;
-  border-bottom: 1px solid var(--color-neutral-300);
+  border-bottom: 1px solid var(--color-femi9-border);
+}
+
+/* header without an announcement section reserves only the nav row */
+header:not(:has(.nav-announcement-bar)):has(.header[data-block-status='loaded']) {
+  height: var(--nav-height);
 }
 
 header nav {
@@ -23,10 +28,10 @@ header nav {
   align-items: center;
   gap: 0 16px;
   margin: auto;
-  max-width: 1248px;
   height: var(--nav-height);
-  padding: 0 24px;
+  padding: 0 16px;
   font-family: var(--type-base-font-family);
+  color: var(--color-femi9-text);
 }
 
 header nav[aria-expanded='true'] {
@@ -43,11 +48,11 @@ header nav[aria-expanded='true'] {
   }
 
   header nav {
+    position: relative;
     display: flex;
     justify-content: space-between;
-    gap: 0 32px;
-    max-width: 1264px;
-    padding: 0 32px;
+    gap: 0 24px;
+    padding: 0 20px;
   }
 
   header nav[aria-expanded='true'] {
@@ -145,15 +150,68 @@ header nav[aria-expanded='true'] .nav-hamburger-icon::after {
 
 /* brand */
 header nav .nav-brand {
-  min-width: 128px;
+  grid-area: brand;
+  min-width: 110px;
+}
+
+header nav .nav-brand .default-content-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 16px;
 }
 
 header nav .nav-brand a {
-  grid-area: brand;
-  flex-basis: 128px;
+  display: flex;
   font: var(--type-headline-1-font);
   letter-spacing: var(--type-headline-1-letter-spacing);
   font-weight: bold;
+}
+
+header nav .nav-brand .icon-f9-logo,
+header nav .nav-brand .icon-f9-logo img {
+  display: block;
+  width: 110px;
+  height: auto;
+}
+
+header nav .nav-brand .nav-location {
+  display: none;
+}
+
+@media (min-width: 900px) {
+  header nav .nav-brand .icon-f9-logo,
+  header nav .nav-brand .icon-f9-logo img {
+    width: 130px;
+  }
+
+  header nav .nav-brand .nav-location {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding-left: 24px;
+    border-left: 1px solid var(--color-femi9-terracotta);
+    height: 22px;
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 24px;
+    color: var(--color-femi9-text);
+    cursor: pointer;
+  }
+
+  header nav .nav-brand .nav-location::after {
+    content: '';
+    width: 17px;
+    height: 17px;
+    margin-left: -4px;
+    background: url('../../icons/f9-chevron-down.svg') center / 17px no-repeat;
+  }
+
+  header nav .nav-brand .nav-location .icon,
+  header nav .nav-brand .nav-location .icon img {
+    display: block;
+    width: 16px;
+    height: 16px;
+  }
 }
 
 li.nav-drop img {
@@ -203,6 +261,12 @@ header nav .nav-sections ul>li ul {
   margin-top: 0;
 }
 
+/* bold top-level item = highlighted (e.g. Sale) */
+header nav .nav-sections .default-content-wrapper>ul>li>strong,
+header nav .nav-sections .default-content-wrapper>ul>li>strong>a {
+  color: var(--color-femi9-sale);
+}
+
 header nav .nav-sections ul>li ul>li {
   font-weight: 400;
 }
@@ -226,10 +290,54 @@ header nav .nav-sections ul>li:empty {
     align-self: center;
   }
 
+  header nav .nav-sections {
+    flex: 0 1 auto;
+  }
+
   header nav .nav-sections .default-content-wrapper>ul>li,
   header nav .nav-sections .nav-drop {
-    border-radius: 4px;
-    padding: 0 var(--spacing-small);
+    display: flex;
+    align-items: center;
+    height: var(--nav-height);
+    padding: 0;
+    font-size: 12px;
+    font-weight: 500;
+    line-height: 16px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--color-femi9-text);
+    cursor: pointer;
+  }
+
+  header nav .nav-sections .default-content-wrapper>ul>li>a,
+  header nav .nav-sections .default-content-wrapper>ul>li>strong>a {
+    font: inherit;
+    letter-spacing: inherit;
+    color: inherit;
+  }
+
+  header nav .nav-sections .default-content-wrapper>ul>li>strong {
+    font-weight: inherit;
+    color: var(--color-femi9-sale);
+  }
+
+  header nav .nav-sections .nav-drop>p {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    line-height: 16px;
+  }
+
+  header nav .nav-sections .nav-drop>p::after {
+    content: '';
+    width: 17px;
+    height: 17px;
+    background: url('../../icons/f9-chevron-down.svg') center / 17px no-repeat;
+    transition: transform 0.2s;
+  }
+
+  header nav .nav-sections .nav-drop[aria-expanded='true']>p::after {
+    transform: rotate(180deg);
   }
 
   header nav .nav-sections .default-content-wrapper>ul>li a {
@@ -238,7 +346,7 @@ header nav .nav-sections ul>li:empty {
 
   header nav .nav-sections ul {
     display: flex;
-    gap: 24px;
+    gap: 32px;
     margin: 0;
   }
 
@@ -259,14 +367,35 @@ header nav .nav-sections ul>li:empty {
 
   header nav .nav-sections .default-content-wrapper>ul>li[aria-expanded='true'] .submenu-wrapper {
     background-color: var(--color-neutral-50);
+    border-top: 1px solid var(--color-femi9-border);
+    box-shadow: 0 8px 16px rgb(0 0 0 / 6%);
     box-sizing: border-box;
     left: 0;
     max-height: var(--desktop-panel-max-height);
     min-height: var(--desktop-panel-min-height);
-    padding: var(--spacing-xbig);
+    padding: var(--spacing-big) 20px;
     position: absolute;
-    top: var(--spacing-large);
+    top: var(--nav-height);
     width: 100%;
+    cursor: default;
+  }
+
+  header nav .nav-sections .nav-drop .submenu-wrapper li,
+  header nav .nav-sections .nav-drop .submenu-wrapper li a {
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 24px;
+    letter-spacing: normal;
+    text-transform: none;
+    color: var(--color-femi9-text);
+  }
+
+  header nav .nav-sections .nav-drop .submenu-wrapper ul {
+    gap: 8px 48px;
+  }
+
+  header nav .nav-sections .nav-drop .submenu-wrapper li a:hover {
+    color: var(--color-femi9-terracotta);
   }
 
   header nav .nav-sections .default-content-wrapper>ul>li .submenu-header {
@@ -286,26 +415,20 @@ header nav .nav-sections ul>li:empty {
     width: var(--desktop-large-panel-width);
   }
 
-  header nav .nav-sections .default-content-wrapper>ul>li ul::before {
-    content: '';
-    position: absolute;
-    top: -8px;
-    left: 16px;
-    width: 0;
-    height: 0;
-    border-left: 8px solid transparent;
-    border-right: 8px solid transparent;
-    border-bottom: 8px solid var(--color-neutral-500);
-  }
-
   header nav .nav-sections .default-content-wrapper>ul>li ul>li {
     min-width: var(--desktop-item-panel-min-width);
     max-width: var(--desktop-item-panel-max-width);
   }
 
-  header nav .nav-sections .default-content-wrapper>ul>li:hover,
-  header nav .nav-sections .nav-drop[aria-expanded='true'] {
-    background-color: var(--color-neutral-200);
+  header nav .nav-sections .default-content-wrapper>ul>li:hover>a,
+  header nav .nav-sections .default-content-wrapper>ul>li:hover>p,
+  header nav .nav-sections .nav-drop[aria-expanded='true']>p {
+    color: var(--color-femi9-terracotta);
+  }
+
+  header nav .nav-sections .default-content-wrapper>ul>li>strong:hover>a {
+    color: var(--color-femi9-sale);
+    text-decoration: underline;
   }
 }
 
@@ -330,20 +453,28 @@ header nav .nav-tools {
   grid-area: tools;
   display: flex;
   height: 100%;
-  gap: var(--spacing-small);
+  gap: 8px;
   align-items: center;
+  justify-content: flex-end;
   background: var(--background-color);
   z-index: 3;
 }
 
 header nav .nav-tools-wrapper>button {
-  color: var(--color-brand-700);
+  color: var(--color-femi9-text);
   background: transparent;
-  padding: 10px;
+  background-size: 24px;
+  padding: 0;
   border: unset;
   cursor: pointer;
-  height: 40px;
-  width: 40px;
+  height: 32px;
+  width: 32px;
+}
+
+@media (min-width: 900px) {
+  header nav .nav-tools {
+    gap: 16px;
+  }
 }
 
 header nav .nav-sections .authCombineNavElement button {
@@ -355,9 +486,10 @@ header nav .nav-sections .authCombineNavElement button {
 }
 
 header nav .nav-tools button.nav-cart-button {
-  background-image: url('../../icons/cart.svg');
+  background-image: url('../../icons/f9-bag.svg');
   background-repeat: no-repeat;
   background-position: center;
+  background-size: 24px;
   position: relative;
 }
 
@@ -365,15 +497,16 @@ header nav .nav-tools button.nav-cart-button[data-count]::after {
   content: attr(data-count);
   position: absolute;
   top: 0;
-  right: -2px;
-  background-color: var(--color-brand-700);
-  color: var(--color-neutral-100);
+  right: 0;
+  background-color: var(--color-femi9-text);
+  color: var(--color-neutral-50);
   border-radius: 50%;
-  width: 1.75em;
-  height: 1.75em;
+  width: 16px;
+  height: 16px;
   display: flex;
   align-items: center;
-  font-size: 0.8em;
+  font-size: 10px;
+  line-height: 1;
   justify-content: center;
 }
 
@@ -390,17 +523,44 @@ header nav .nav-tools .nav-cart-status {
 }
 
 header nav .nav-tools button.nav-wishlist-button {
-  background-image: url('../../icons/heart.svg');
+  background-image: url('../../icons/f9-heart.svg');
   background-repeat: no-repeat;
   background-position: center;
+  background-size: 24px;
   position: relative;
 }
 
 header nav .nav-tools button.nav-search-button {
   font-size: 0;
-  background-image: url('../../icons/search.svg');
+  background-image: url('../../icons/f9-search.svg');
   background-repeat: no-repeat;
   background-position: center;
+  background-size: 20px;
+}
+
+@media (min-width: 900px) {
+  header nav .nav-tools button.nav-search-button {
+    width: auto;
+    padding-left: 28px;
+    background-position: left center;
+    font-family: var(--type-base-font-family);
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 20px;
+    color: var(--color-femi9-text);
+  }
+}
+
+/* signed-out account button: Figma user icon (svg kept for its accessible label) */
+header nav .nav-tools .nav-dropdown-button:has(svg) {
+  min-width: 32px;
+  background: url('../../icons/f9-user.svg') center / 24px no-repeat;
+}
+
+header nav .nav-tools .nav-dropdown-button svg {
+  width: 24px;
+  height: 24px;
+  opacity: 0;
 }
 
 header .nav-search-panel {
@@ -814,6 +974,119 @@ header .nav-search-input .search_autocomplete .popover-container {
   height: 15rem;
   max-width: 15rem;
   max-height: 15rem;
+}
+
+/* Announcement bar (4th nav section) */
+header .nav-announcement-bar {
+  background-color: var(--color-femi9-terracotta);
+  color: var(--color-neutral-50);
+}
+
+header .nav-announcement .default-content-wrapper {
+  box-sizing: border-box;
+  display: grid;
+  grid-template-columns: 1fr;
+  align-items: center;
+  height: var(--announcement-height);
+  padding: 0 16px;
+  font-family: var(--type-base-font-family);
+  font-size: 11px;
+  font-weight: 500;
+  line-height: 16px;
+  letter-spacing: normal;
+  text-align: center;
+}
+
+header .nav-announcement p {
+  display: flex;
+  align-items: center;
+  margin: 0;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+header .nav-announcement p:nth-child(2) {
+  justify-content: center;
+  gap: 4px;
+}
+
+header .nav-announcement p:first-child,
+header .nav-announcement p:nth-child(n + 3) {
+  display: none;
+}
+
+header .nav-announcement a {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font: inherit;
+  letter-spacing: normal;
+  color: inherit;
+  text-decoration: none;
+  text-transform: uppercase;
+}
+
+header .nav-announcement a:hover {
+  text-decoration: underline;
+}
+
+header .nav-announcement .icon,
+header .nav-announcement .icon img {
+  display: block;
+  width: 16px;
+  height: 16px;
+}
+
+header .nav-announcement .icon-f9-riyal-white,
+header .nav-announcement .icon-f9-riyal-white img {
+  width: 11px;
+  height: 12px;
+}
+
+@media (min-width: 900px) {
+  header .nav-announcement .default-content-wrapper {
+    grid-template-columns: 1fr auto 1fr;
+    padding: 0 20px;
+    font-size: 12px;
+  }
+
+  header .nav-announcement p:first-child,
+  header .nav-announcement p:nth-child(n + 3) {
+    display: flex;
+  }
+
+  header .nav-announcement p:nth-child(n + 3) {
+    justify-content: flex-end;
+    gap: 20px;
+  }
+
+  /* currency and language selectors show a dropdown chevron */
+  header .nav-announcement p:nth-child(n + 3) .icon {
+    display: flex;
+    align-items: center;
+    gap: 2px;
+    width: auto;
+  }
+
+  header .nav-announcement p:nth-child(n + 3) .icon::after,
+  header .nav-announcement p:nth-child(n + 3) a::after {
+    content: '';
+    width: 16px;
+    height: 16px;
+    background: url('../../icons/f9-chevron-down-white.svg') center / 16px no-repeat;
+  }
+
+  header .nav-announcement p:nth-child(n + 3) a {
+    gap: 2px;
+    text-transform: none;
+  }
+}
+
+@media (max-width: 899px) {
+  header .nav-wrapper:has(nav[aria-expanded='true']) .nav-announcement-bar {
+    display: none;
+  }
 }
 
 /* Seller Assisted Buying Banner - Session Indicator */
