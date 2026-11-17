@@ -49,10 +49,11 @@ The block reads the following metadata tags:
 
 ### Navigation Structure
 
-The header creates three main sections from the nav fragment:
-1. **Brand Section**: Logo and brand link
-2. **Navigation Sections**: Main menu with dropdown support and submenu structure
-3. **Tools Section**: Wishlist, mini cart, search, and authentication controls
+The header creates up to four sections from the nav fragment:
+1. **Brand Section**: Logo and brand link. An optional second paragraph is shown as a location label (`nav-location`) next to the logo on desktop. An icon-only home link gets an accessible name from the `Global.Home` placeholder (default "Home").
+2. **Navigation Sections**: Main menu with dropdown support and submenu structure. A top-level item written in bold (for example **Sale**) is highlighted in red.
+3. **Tools Section**: Search, authentication, wishlist and mini cart controls, in that DOM (and tab) order
+4. **Announcement Section** (optional): Rendered as a bar above the header row (`.nav-announcement-bar`), with its styles loaded from `announcement.css` only when the section exists. Three paragraphs: left (for example a Stores link), center message, right (for example currency and language links). On mobile only the center message is shown, and the bar is hidden while the mobile menu is open.
 
 ### User Interaction Flows
 
@@ -128,6 +129,7 @@ The header creates three main sections from the nav fragment:
 
 - `header.js` - Main block logic, navigation setup, and tool integrations including auth button and panel skeleton
 - `header.css` - Styles for navigation, panels, and responsive layouts
+- `announcement.css` - Styles for the optional announcement bar, loaded on demand
 - `renderAuth.js` - Lazy auth module: exports `initSignIn` (desktop SignIn dropin) and `openAuthModal` (mobile AuthCombine modal). Only fetched on first user interaction with the auth button
 - `renderSellerAssistedBuyingBanner.js` - Banner component for seller assisted buying sessions with session management
 

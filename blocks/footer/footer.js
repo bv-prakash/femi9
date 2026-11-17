@@ -169,6 +169,7 @@ export default async function decorate(block) {
   // Layout: every section is a column, except the last one (legal row) when there are several
   const sections = [...fragment.querySelectorAll(':scope > .section')];
   const legal = sections.length > 1 ? sections.pop() : null;
+  sections[0]?.classList.add('footer-brand');
   const columns = document.createElement('div');
   columns.className = 'footer-columns';
   columns.append(...sections);
@@ -179,7 +180,8 @@ export default async function decorate(block) {
   }
   while (fragment.firstElementChild) footer.append(fragment.firstElementChild);
 
-  // Paragraphs made only of icon links (social, app stores): show the icons, keep link text for screen readers
+  // Paragraphs made only of icon links (social, app stores):
+  // show the icons, keep the link text for screen readers
   footer.querySelectorAll('p').forEach((p) => {
     const links = [...p.querySelectorAll('a')];
     const rest = p.cloneNode(true);
@@ -204,7 +206,8 @@ export default async function decorate(block) {
   backToTop.className = 'footer-back-to-top';
   backToTop.setAttribute('aria-label', 'Back to top');
   backToTop.addEventListener('click', () => {
-    window.scrollTo({ top: 0, behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth' });
+    const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    window.scrollTo({ top: 0, behavior: reduceMotion ? 'auto' : 'smooth' });
   });
   footer.append(backToTop);
 
