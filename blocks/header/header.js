@@ -144,8 +144,8 @@ subMenuHeader.innerHTML = `<h5 class="back-link">${labels.Global?.AllCategories 
  */
 function setupSubmenu(navSection) {
   if (navSection.querySelector('ul')) {
-    let label;
-    if (navSection.childNodes.length) {
+    let label = navSection.querySelector(':scope > p');
+    if (!label && navSection.childNodes.length) {
       [label] = navSection.childNodes;
     }
 
@@ -188,11 +188,21 @@ export default async function decorate(block) {
   nav.id = 'nav';
   while (fragment.firstElementChild) nav.append(fragment.firstElementChild);
 
-  const classes = ['brand', 'sections', 'tools'];
+  const classes = ['brand', 'sections', 'tools', 'announcement'];
   classes.forEach((c, i) => {
     const section = nav.children[i];
     if (section) section.classList.add(`nav-${c}`);
   });
+
+  // Optional 4th nav section: announcement bar rendered above the main header row
+  const navAnnouncement = nav.querySelector('.nav-announcement');
+  if (navAnnouncement) {
+    navAnnouncement.remove();
+    navAnnouncement.querySelectorAll('.button').forEach((link) => {
+      link.className = '';
+      link.closest('.button-container')?.classList.remove('button-container');
+    });
+  }
 
   const navBrand = nav.querySelector('.nav-brand');
   const brandLink = navBrand.querySelector('.button');
@@ -200,6 +210,12 @@ export default async function decorate(block) {
     brandLink.className = '';
     brandLink.closest('.button-container').className = '';
   }
+  const homeLink = navBrand.querySelector('a');
+  if (homeLink && !homeLink.textContent.trim()) {
+    homeLink.setAttribute('aria-label', labels.Global?.Home ?? 'Home');
+  }
+  // Optional second brand paragraph: location label next to the logo
+  navBrand.querySelectorAll('p')[1]?.classList.add('nav-location');
 
   const navSections = nav.querySelector('.nav-sections');
   if (navSections) {
@@ -673,8 +689,21 @@ export default async function decorate(block) {
     }
   });
 
+  // Tool order (DOM order = tab order): search, account, wishlist, cart
+  navTools.append(
+    ...['.search-wrapper', '.dropdown-wrapper', '.wishlist-wrapper', '.minicart-wrapper']
+      .map((selector) => navTools.querySelector(`:scope > ${selector}`))
+      .filter(Boolean),
+  );
+
   const navWrapper = document.createElement('div');
   navWrapper.className = 'nav-wrapper';
+  if (navAnnouncement) {
+    const announcementBar = document.createElement('div');
+    announcementBar.className = 'nav-announcement-bar';
+    announcementBar.append(navAnnouncement);
+    navWrapper.append(announcementBar);
+  }
   navWrapper.append(nav);
   block.append(navWrapper);
 
