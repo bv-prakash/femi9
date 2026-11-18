@@ -223,6 +223,18 @@ export default async function decorate(block) {
     navSections
       .querySelectorAll(':scope .default-content-wrapper > ul > li')
       .forEach((navSection) => {
+        // Loose lists wrap single links in <p> (decorated as buttons): unwrap plain items.
+        // A bold item (<strong>, or a.primary once decorated) is flagged as highlighted.
+        if (!navSection.querySelector('ul')) {
+          const wrapper = navSection.querySelector(':scope > p');
+          if (wrapper) wrapper.replaceWith(...wrapper.childNodes);
+          const bold = navSection.querySelector(':scope > strong');
+          if (bold || navSection.querySelector('a.button.primary')) {
+            navSection.classList.add('nav-highlight');
+          }
+          if (bold) bold.replaceWith(...bold.childNodes);
+          navSection.querySelectorAll('.button').forEach((link) => { link.className = ''; });
+        }
         if (navSection.querySelector('ul')) {
           navSection.classList.add('nav-drop');
           navSection.setAttribute('role', 'button');
