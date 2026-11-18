@@ -64,3 +64,9 @@ This block does not emit or listen to any custom events. -->
 - **Missing Images**: If a card row has no image, only body content is displayed
 - **Empty Cards**: Empty rows are still rendered as cards with appropriate spacing
 - **Fallback Behavior**: Block gracefully handles missing or malformed content
+
+## Variants
+
+| Variant | Effect |
+|---------|--------|
+| `tiles` | Full-width image tiles (Femi9 category tiles): two side by side with a 12px gap on desktop (714:357 images), stacked on mobile. The heading and a plain **Shop Now** link sit over the bottom of the image in white; on desktop the first tile's text is aligned to its inner (right) edge. |

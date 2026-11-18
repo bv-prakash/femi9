@@ -135,11 +135,19 @@
   --color-femi9-text: #424242;
   --color-femi9-sale: #e50800;
   --color-femi9-border: #f6f6f6;
+  --color-femi9-page: #fefcf9;
+
+  /* page container */
+  --container-max-width: 1640px;
+  --container-padding: 16px;
+  --section-spacing: 64px;
 }
 
 @media (min-width: 900px) {
   :root {
     --nav-height: 7.2rem;
+    --container-padding: 20px;
+    --section-spacing: 120px;
   }
 }
 
@@ -181,6 +189,7 @@ header {
 
 main {
   grid-row: 2;
+  background-color: var(--color-femi9-page);
 }
 
 footer {
@@ -470,27 +479,26 @@ main img {
 
 /* sections */
 main > .section {
-  margin: var(--spacing-xbig) 0;
+  margin: 0 0 var(--section-spacing);
 }
 
 .section:empty {
   display: none;
 }
 
+main > .section:last-of-type {
+  margin-bottom: 0;
+}
+
 main > .section > div {
-  max-width: 1200px;
+  box-sizing: border-box;
+  max-width: var(--container-max-width);
   margin: auto;
-  padding: 0 var(--spacing-medium);
+  padding: 0 var(--container-padding);
 }
 
 main > .section:first-of-type {
   margin-top: 0;
-}
-
-@media (min-width: 900px) {
-  main > .section > div {
-    padding: 0 var(--spacing-big);
-  }
 }
 
 /* section metadata - styles - start */

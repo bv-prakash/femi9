@@ -31,3 +31,160 @@
     order: unset;
   }
 }
+
+/* trust variant: full-width cream strip with icon + title + text items */
+main > .section .columns-wrapper:has(> .columns.trust) {
+  max-width: none;
+  padding: 0;
+  background-color: #fcf3e3;
+}
+
+.columns.trust {
+  box-sizing: border-box;
+  max-width: calc(1226px + 2 * var(--container-padding));
+  margin: 0 auto;
+  padding: 32px var(--container-padding);
+  font-family: var(--type-base-font-family);
+  color: var(--color-femi9-text);
+}
+
+.columns.trust > div {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 24px 16px;
+}
+
+.columns.trust p {
+  margin: 0;
+  font-size: 14px;
+  line-height: 20px;
+}
+
+.columns.trust p:has(> .icon) {
+  margin-bottom: 12px;
+  line-height: 0;
+}
+
+.columns.trust .icon {
+  width: 32px;
+  height: 32px;
+}
+
+.columns.trust strong {
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 20px;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+/* collection variant: image | text | image */
+.columns.collection {
+  max-width: 1226px;
+  margin: 0 auto;
+  font-family: var(--type-base-font-family);
+}
+
+.columns.collection > div {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 24px 12px;
+  align-items: center;
+}
+
+.columns.collection > div > div:not(.columns-img-col) {
+  grid-column: 1 / -1;
+  grid-row: 1;
+  text-align: center;
+}
+
+.columns.collection > div > .columns-img-col img {
+  aspect-ratio: 358 / 510;
+  object-fit: cover;
+}
+
+.columns.collection h2 {
+  margin: 0 0 8px;
+  font-family: inherit;
+  font-size: 32px;
+  font-weight: 300;
+  line-height: 40px;
+  letter-spacing: normal;
+  color: var(--color-femi9-terracotta);
+}
+
+.columns.collection > div > div:not(.columns-img-col) p {
+  margin: 0 auto;
+  max-width: 420px;
+  font-size: 16px;
+  line-height: 24px;
+  color: #616161;
+}
+
+.columns.collection > div > div:not(.columns-img-col) p.button-wrapper {
+  margin-top: 20px;
+}
+
+.columns.collection a.button:any-link {
+  gap: 8px;
+  height: 40px;
+  padding: 0 16px;
+  border: 0;
+  border-radius: 0;
+  background-color: var(--color-femi9-text);
+  color: var(--color-neutral-50);
+  font-family: inherit;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 20px;
+  letter-spacing: normal;
+}
+
+.columns.collection a.button:any-link::after {
+  content: '';
+  width: 24px;
+  height: 24px;
+  background: url('../../icons/femi-arrow-right-white.svg') center / 24px no-repeat;
+}
+
+.columns.collection a.button:hover {
+  background-color: var(--color-brand-700);
+}
+
+@media (min-width: 900px) {
+  .columns.trust {
+    padding: 0 var(--container-padding);
+  }
+
+  .columns.trust > div {
+    grid-template-columns: repeat(4, auto);
+    align-items: center;
+    justify-content: space-between;
+    height: 200px;
+  }
+
+  .columns.collection > div {
+    grid-template-columns: 358fr 446fr 358fr;
+    gap: 32px;
+  }
+
+  .columns.collection > div > div:not(.columns-img-col) {
+    grid-column: 2;
+  }
+
+  .columns.collection > div > .columns-img-col:last-child {
+    grid-column: 3;
+    grid-row: 1;
+  }
+
+  .columns.collection h2 {
+    margin-bottom: 12px;
+    font-size: clamp(36px, 3.35vw, 48px);
+    line-height: 1.17;
+  }
+
+  .columns.collection > div > div:not(.columns-img-col) p {
+    font-size: 18px;
+    line-height: 26px;
+  }
+}
