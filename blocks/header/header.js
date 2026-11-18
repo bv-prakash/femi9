@@ -3,7 +3,7 @@ import { events } from '@dropins/tools/event-bus.js';
 import { getCookie } from '@dropins/tools/lib.js';
 
 import { tryRenderAemAssetsImage } from '@dropins/tools/lib/aem/assets.js';
-import { getMetadata } from '../../scripts/aem.js';
+import { getMetadata, loadCSS } from '../../scripts/aem.js';
 import { loadFragment } from '../fragment/fragment.js';
 import {
   fetchPlaceholders,
@@ -197,6 +197,7 @@ export default async function decorate(block) {
   // Optional 4th nav section: announcement bar rendered above the main header row
   const navAnnouncement = nav.querySelector('.nav-announcement');
   if (navAnnouncement) {
+    await loadCSS(`${window.hlx.codeBasePath}/blocks/header/announcement.css`);
     navAnnouncement.remove();
     navAnnouncement.querySelectorAll('.button').forEach((link) => {
       link.className = '';
