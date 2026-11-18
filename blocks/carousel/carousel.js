@@ -143,7 +143,8 @@ export default async function decorate(block) {
     block.append(slideIndicatorsNav);
   }
 
-  shuffleArray(rows);
+  // billboard carousels keep the authored slide order
+  if (!block.classList.contains('billboard')) shuffleArray(rows);
 
   rows.forEach((row, idx) => {
     const slide = createSlide(row, idx, carouselId);

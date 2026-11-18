@@ -29,3 +29,118 @@
   aspect-ratio: 4 / 3;
   object-fit: cover;
 }
+
+/* tiles variant: image tiles with the label over the photo */
+main > .section .cards-wrapper:has(> .cards.tiles) {
+  max-width: none;
+  margin-top: 12px;
+  padding: 0;
+}
+
+.cards.tiles > ul {
+  grid-template-columns: 1fr;
+  gap: 12px;
+}
+
+.cards.tiles > ul > li {
+  position: relative;
+  border: 0;
+  background: none;
+}
+
+.cards.tiles > ul > li img {
+  display: block;
+  aspect-ratio: 714 / 357;
+}
+
+.cards.tiles .cards-card-body {
+  position: absolute;
+  inset: auto 16px 16px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 8px;
+  margin: 0;
+  color: var(--color-neutral-50);
+  text-shadow: 0 1px 8px rgb(0 0 0 / 15%);
+}
+
+.cards.tiles .cards-card-body h2,
+.cards.tiles .cards-card-body h3,
+.cards.tiles .cards-card-body p {
+  padding: 0;
+  text-align: inherit;
+}
+
+.cards.tiles .cards-card-body h2,
+.cards.tiles .cards-card-body h3 {
+  margin: 0;
+  font-family: var(--type-base-font-family);
+  font-size: 24px;
+  font-weight: 400;
+  line-height: 32px;
+  letter-spacing: normal;
+  color: inherit;
+}
+
+.cards.tiles .cards-card-body p {
+  margin: 0;
+}
+
+.cards.tiles .cards-card-body a:any-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  height: auto;
+  padding: 0;
+  border: 0;
+  border-bottom: 1px solid currentcolor;
+  border-radius: 0;
+  background: none;
+  font-family: var(--type-base-font-family);
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 24px;
+  letter-spacing: normal;
+  color: inherit;
+}
+
+.cards.tiles .cards-card-body a:any-link::after {
+  content: '';
+  width: 24px;
+  height: 24px;
+  margin-right: -32px;
+  background: url('../../icons/femi-arrow-right-white.svg') center / 24px no-repeat;
+}
+
+.cards.tiles .cards-card-body a:hover {
+  text-decoration: none;
+  opacity: 0.85;
+}
+
+@media (min-width: 900px) {
+  .cards.tiles > ul {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .cards.tiles .cards-card-body {
+    inset: auto 24px 24px;
+    gap: 12px;
+  }
+
+  /* first tile: label on the inner (right) edge, second tile on the inner (left) edge */
+  .cards.tiles > ul > li:nth-child(odd) .cards-card-body {
+    align-items: flex-end;
+    text-align: end;
+  }
+
+  .cards.tiles > ul > li:nth-child(odd) .cards-card-body a:any-link {
+    margin-right: 32px;
+  }
+
+  .cards.tiles .cards-card-body h2,
+  .cards.tiles .cards-card-body h3 {
+    font-size: 32px;
+    line-height: 36px;
+  }
+}

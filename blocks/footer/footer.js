@@ -211,5 +211,17 @@ export default async function decorate(block) {
   });
   footer.append(backToTop);
 
+  // Floating WhatsApp chat button, reusing the footer's WhatsApp link
+  const whatsapp = footer.querySelector('a[href*="wa.me"], a[href*="whatsapp.com"]');
+  if (whatsapp && !document.querySelector('.footer-whatsapp-float')) {
+    const float = document.createElement('a');
+    float.className = 'footer-whatsapp-float';
+    float.href = whatsapp.href;
+    float.target = '_blank';
+    float.rel = 'noopener';
+    float.setAttribute('aria-label', 'Chat with us on WhatsApp');
+    document.body.append(float);
+  }
+
   block.append(footer);
 }

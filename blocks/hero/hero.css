@@ -35,3 +35,128 @@
     padding: 40px 32px;
   }
 }
+
+/* banner variant: full-width promotional banner with text on the right */
+.hero.banner {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  box-sizing: border-box;
+  min-height: 520px;
+  padding: 32px var(--container-padding);
+  overflow: hidden;
+  font-family: var(--type-base-font-family);
+  color: var(--color-neutral-50);
+}
+
+.hero.banner picture {
+  z-index: 0;
+}
+
+.hero.banner img {
+  object-position: 30% center;
+}
+
+/* scrim behind the text on small screens */
+.hero.banner::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  background: linear-gradient(180deg, rgb(0 0 0 / 0%) 40%, rgb(0 0 0 / 55%) 100%);
+}
+
+/* text sits above the image and scrim; the image stays relative to the banner */
+.hero.banner :is(p, h1, h2, h3):not(:has(picture)) {
+  position: relative;
+  z-index: 1;
+}
+
+.hero.banner p,
+.hero.banner h1,
+.hero.banner h2 {
+  max-width: none;
+  margin: 0;
+  font-family: inherit;
+  font-weight: 300;
+  letter-spacing: normal;
+  color: inherit;
+}
+
+.hero.banner p {
+  font-size: 40px;
+  line-height: 44px;
+}
+
+.hero.banner h1,
+.hero.banner h2 {
+  font-size: 32px;
+  line-height: 38px;
+}
+
+.hero.banner p strong {
+  font-size: 40px;
+  font-weight: 800;
+  line-height: 44px;
+  text-transform: uppercase;
+  color: var(--color-femi9-sale);
+}
+
+.hero.banner p.button-wrapper {
+  margin-top: 24px;
+}
+
+.hero.banner a.button:any-link {
+  gap: 8px;
+  height: 40px;
+  padding: 0 16px;
+  border: 0;
+  border-radius: 0;
+  background-color: var(--color-femi9-text);
+  color: var(--color-neutral-50);
+  font-family: inherit;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 20px;
+  letter-spacing: normal;
+}
+
+.hero.banner a.button:any-link::after {
+  content: '';
+  width: 24px;
+  height: 24px;
+  background: url('../../icons/femi-arrow-right-white.svg') center / 24px no-repeat;
+}
+
+.hero.banner a.button:hover {
+  background-color: var(--color-brand-700);
+}
+
+@media (min-width: 900px) {
+  .hero.banner {
+    justify-content: flex-start;
+    min-height: 0;
+    aspect-ratio: 1440 / 726;
+    padding: 13.75% 0 0 64.8%;
+  }
+
+  .hero.banner::after {
+    display: none;
+  }
+
+  .hero.banner img {
+    object-position: center;
+  }
+
+  .hero.banner p,
+  .hero.banner p strong {
+    font-size: clamp(44px, 4.2vw, 60px);
+    line-height: 1.07;
+  }
+
+  .hero.banner h1,
+  .hero.banner h2 {
+    font-size: clamp(32px, 3.05vw, 44px);
+    line-height: 1.14;
+  }
+}

@@ -291,3 +291,31 @@ footer .footer .footer-back-to-top:focus-visible {
         right: 20px;
     }
 }
+
+/* floating WhatsApp button (appended to body by footer.js) */
+.footer-whatsapp-float {
+    position: fixed;
+    right: var(--container-padding);
+    bottom: 24px;
+    z-index: 2;
+    width: 38px;
+    height: 38px;
+    border-radius: 50% 50% 50% 4px;
+    background: #4caf50 url('../../icons/femi-whatsapp.svg') center / 20px no-repeat;
+    box-shadow: 0 2px 8px rgb(0 0 0 / 15%);
+}
+
+.footer-whatsapp-float:hover {
+    background-color: #43a047;
+}
+
+.footer-whatsapp-float:focus-visible {
+    outline: 2px solid var(--color-femi9-text);
+    outline-offset: 2px;
+}
+
+@media (min-width: 900px) {
+    .footer-whatsapp-float {
+        bottom: 64px;
+    }
+}

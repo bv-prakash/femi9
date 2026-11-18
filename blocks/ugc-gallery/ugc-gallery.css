@@ -1,0 +1,179 @@
+/* eyebrow + heading above the gallery (for example "#FEMI9WOMAN" / "Styled by you") */
+.ugc-gallery-container .default-content-wrapper p {
+  margin: 0;
+  font-family: var(--type-base-font-family);
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 16px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--color-femi9-text);
+}
+
+.ugc-gallery-container .default-content-wrapper h2 {
+  margin: 12px 0 24px;
+  font-family: var(--type-base-font-family);
+  font-size: 32px;
+  font-weight: 300;
+  line-height: 40px;
+  letter-spacing: normal;
+  color: var(--color-femi9-terracotta);
+}
+
+.ugc-gallery {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  font-family: var(--type-base-font-family);
+}
+
+.ugc-gallery .ugc-gallery-feature {
+  position: relative;
+  line-height: 0;
+}
+
+.ugc-gallery .ugc-gallery-feature picture,
+.ugc-gallery .ugc-gallery-feature img {
+  display: block;
+  width: 100%;
+}
+
+.ugc-gallery .ugc-gallery-feature img {
+  aspect-ratio: 4 / 5;
+  object-fit: cover;
+}
+
+.ugc-gallery .ugc-gallery-handle:any-link {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-family: inherit;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 20px;
+  letter-spacing: normal;
+  white-space: nowrap;
+  color: var(--color-neutral-50);
+  text-shadow: 0 1px 6px rgb(0 0 0 / 35%);
+  transform: translate(-50%, -50%);
+}
+
+.ugc-gallery .ugc-gallery-handle::after {
+  content: '';
+  width: 24px;
+  height: 24px;
+  background: url('../../icons/femi-arrow-right-white.svg') center / 24px no-repeat;
+}
+
+.ugc-gallery .ugc-gallery-handle:hover {
+  text-decoration: underline;
+}
+
+.ugc-gallery .ugc-gallery-track {
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: 56%;
+  gap: 4px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scrollbar-width: none;
+
+  /* keep off-screen tiles from widening the page (negative-margin scroller) */
+  contain: paint;
+}
+
+.ugc-gallery .ugc-gallery-track::-webkit-scrollbar {
+  display: none;
+}
+
+.ugc-gallery .ugc-gallery-track li {
+  scroll-snap-align: start;
+}
+
+.ugc-gallery .ugc-gallery-tile {
+  position: relative;
+  display: block;
+  line-height: 0;
+}
+
+.ugc-gallery .ugc-gallery-tile img {
+  display: block;
+  width: 100%;
+  aspect-ratio: 246 / 438;
+  object-fit: cover;
+}
+
+.ugc-gallery .ugc-gallery-handle .icon,
+.ugc-gallery .ugc-gallery-handle .icon img {
+  display: block;
+  width: 20px;
+  height: 20px;
+}
+
+.ugc-gallery .ugc-gallery-play {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 44px;
+  height: 44px;
+  background: url('../../icons/femi-play.svg') center / 44px no-repeat;
+  transform: translate(-50%, -50%);
+  transition: transform 0.2s;
+}
+
+.ugc-gallery .ugc-gallery-tile:hover .ugc-gallery-play {
+  transform: translate(-50%, -50%) scale(1.1);
+}
+
+.ugc-gallery .ugc-gallery-tile:focus-visible {
+  outline: 2px solid var(--color-femi9-text);
+  outline-offset: 2px;
+}
+
+@media (min-width: 900px) {
+  .ugc-gallery-container .default-content-wrapper p {
+    font-size: 12px;
+  }
+
+  .ugc-gallery-container .default-content-wrapper h2 {
+    margin: 12px 0 40px;
+    font-size: clamp(36px, 3.35vw, 48px);
+    line-height: 1.17;
+  }
+
+  .ugc-gallery {
+    flex-direction: row;
+    align-items: flex-start;
+    gap: 0;
+  }
+
+  .ugc-gallery .ugc-gallery-feature {
+    flex: 0 0 27.43%;
+  }
+
+  .ugc-gallery .ugc-gallery-feature img {
+    aspect-ratio: 384 / 682;
+  }
+
+  /* the tile row starts 122px down and overlaps the feature image by 39px (at 1440px) */
+  .ugc-gallery .ugc-gallery-track {
+    position: relative;
+    z-index: 1;
+    flex: 1;
+    min-width: 0;
+    grid-auto-columns: calc((100% - 4 * 4px) / 4.29);
+    margin: 8.7vw 0 0 -2.8%;
+  }
+}
+
+@media (min-width: 1640px) {
+  .ugc-gallery .ugc-gallery-track {
+    margin-top: 122px;
+  }
+}
