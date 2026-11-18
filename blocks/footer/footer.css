@@ -180,26 +180,26 @@ footer .footer .footer-brand .default-content-wrapper > p:first-child {
     background-color: #fcf3e3;
 }
 
-footer .footer .icon-f9-payment-methods,
-footer .footer .icon-f9-payment-methods img {
+footer .footer .icon-femi-payment-methods,
+footer .footer .icon-femi-payment-methods img {
     width: 201px;
     height: 25px;
 }
 
-footer .footer .icon-f9-tabby,
-footer .footer .icon-f9-tabby img {
+footer .footer .icon-femi-tabby,
+footer .footer .icon-femi-tabby img {
     width: 65px;
     height: 26px;
 }
 
-footer .footer .icon-f9-trust-badge,
-footer .footer .icon-f9-trust-badge img {
+footer .footer .icon-femi-trust-badge,
+footer .footer .icon-femi-trust-badge img {
     width: 26px;
     height: 26px;
 }
 
-footer .footer .icon-f9-vat-badge,
-footer .footer .icon-f9-vat-badge img {
+footer .footer .icon-femi-vat-badge,
+footer .footer .icon-femi-vat-badge img {
     width: 21px;
     height: 26px;
 }
@@ -231,14 +231,14 @@ footer .footer .footer-icon-links .icon img {
     height: 20px;
 }
 
-footer .footer .footer-icon-links:has(.icon-f9-app-store) {
+footer .footer .footer-icon-links:has(.icon-femi-app-store) {
     gap: 12px;
 }
 
-footer .footer .footer-icon-links .icon-f9-app-store,
-footer .footer .footer-icon-links .icon-f9-app-store img,
-footer .footer .footer-icon-links .icon-f9-google-play,
-footer .footer .footer-icon-links .icon-f9-google-play img {
+footer .footer .footer-icon-links .icon-femi-app-store,
+footer .footer .footer-icon-links .icon-femi-app-store img,
+footer .footer .footer-icon-links .icon-femi-google-play,
+footer .footer .footer-icon-links .icon-femi-google-play img {
     width: 120px;
     height: 40px;
 }
@@ -254,7 +254,7 @@ footer .footer .footer-back-to-top {
     padding: 0;
     border: 0;
     border-radius: 50%;
-    background: #424242 url('../../icons/f9-arrow-up-white.svg') center / 28px no-repeat;
+    background: #424242 url('../../icons/femi-arrow-up-white.svg') center / 28px no-repeat;
     cursor: pointer;
 }
 

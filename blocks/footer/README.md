@@ -39,10 +39,10 @@ Each section of the footer document becomes one part of the footer:
 
 1. **Columns** - every section except the last one is a column, shown side by side on desktop.
    - The **first column** (`footer-brand`) is wider. Its first paragraph is shown as a highlighted strip (used for payment method logos), followed by any other content (for example app store badges).
-   - Other columns usually hold a heading and a list of links. List items can start with an icon (`:f9-phone:`, `:f9-mail:`, `:f9-location-white:`).
+   - Other columns usually hold a heading and a list of links. List items can start with an icon (`:femi-phone:`, `:femi-mail:`, `:femi-location-white:`).
 2. **Legal row** - the last section (when there is more than one) is shown under a divider: the first paragraph on the left and the remaining paragraph(s) on the right. Several links in one paragraph are separated by a thin divider.
 
-A paragraph that contains only links, where every link contains an icon (social profiles, app store badges), is shown as a row of icons. The link text is kept but visually hidden so screen readers still announce it, for example `[:f9-facebook: Facebook](https://facebook.com/...)`.
+A paragraph that contains only links, where every link contains an icon (social profiles, app store badges), is shown as a row of icons. The link text is kept but visually hidden so screen readers still announce it, for example `[:femi-facebook: Facebook](https://facebook.com/...)`.
 
 ## Behavior Patterns
 

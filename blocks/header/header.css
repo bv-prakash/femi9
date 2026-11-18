@@ -179,8 +179,8 @@ header nav .nav-brand img {
   height: auto;
 }
 
-header nav .nav-brand .icon-f9-logo,
-header nav .nav-brand .icon-f9-logo img {
+header nav .nav-brand .icon-femi-logo,
+header nav .nav-brand .icon-femi-logo img {
   display: block;
   width: 110px;
   height: auto;
@@ -191,8 +191,8 @@ header nav .nav-brand .nav-location {
 }
 
 @media (min-width: 900px) {
-  header nav .nav-brand .icon-f9-logo,
-  header nav .nav-brand .icon-f9-logo img {
+  header nav .nav-brand .icon-femi-logo,
+  header nav .nav-brand .icon-femi-logo img {
     width: 130px;
   }
 
@@ -215,7 +215,7 @@ header nav .nav-brand .nav-location {
     width: 17px;
     height: 17px;
     margin-left: -4px;
-    background: url('../../icons/f9-chevron-down.svg') center / 17px no-repeat;
+    background: url('../../icons/femi-chevron-down.svg') center / 17px no-repeat;
   }
 
   header nav .nav-brand .nav-location .icon,
@@ -262,7 +262,7 @@ header nav .nav-sections ul>li ul {
 }
 
 /* bold top-level item = highlighted (e.g. Sale) */
-header nav .nav-sections .default-content-wrapper>ul>li>strong>a {
+header nav .nav-sections .default-content-wrapper>ul>li.nav-highlight>a {
   color: var(--color-femi9-sale);
 }
 
@@ -316,7 +316,7 @@ header nav .nav-sections ul>li:empty {
     content: '';
     width: 17px;
     height: 17px;
-    background: url('../../icons/f9-chevron-down.svg') center / 17px no-repeat;
+    background: url('../../icons/femi-chevron-down.svg') center / 17px no-repeat;
     transition: transform 0.2s;
   }
 
@@ -330,10 +330,6 @@ header nav .nav-sections ul>li:empty {
 
   header nav .nav-sections .default-content-wrapper>ul>li>a {
     color: inherit;
-  }
-
-  header nav .nav-sections .default-content-wrapper>ul>li>a,
-  header nav .nav-sections .default-content-wrapper>ul>li>strong>a {
     font-family: inherit;
     font-size: inherit;
     font-weight: 500;
@@ -405,7 +401,7 @@ header nav .nav-sections ul>li:empty {
     color: var(--color-femi9-terracotta);
   }
 
-  header nav .nav-sections .default-content-wrapper>ul>li>strong:hover>a {
+  header nav .nav-sections .default-content-wrapper>ul>li.nav-highlight:hover>a {
     color: var(--color-femi9-sale);
     text-decoration: underline;
   }
@@ -484,7 +480,7 @@ header nav .nav-sections .authCombineNavElement button {
 }
 
 header nav .nav-tools button.nav-cart-button {
-  background-image: url('../../icons/f9-bag.svg');
+  background-image: url('../../icons/femi-bag.svg');
   background-repeat: no-repeat;
   background-position: center;
   background-size: 24px;
@@ -521,7 +517,7 @@ header nav .nav-tools .nav-cart-status {
 }
 
 header nav .nav-tools button.nav-wishlist-button {
-  background-image: url('../../icons/f9-heart.svg');
+  background-image: url('../../icons/femi-heart.svg');
   background-repeat: no-repeat;
   background-position: center;
   background-size: 24px;
@@ -530,7 +526,7 @@ header nav .nav-tools button.nav-wishlist-button {
 
 header nav .nav-tools button.nav-search-button {
   font-size: 0;
-  background-image: url('../../icons/f9-search.svg');
+  background-image: url('../../icons/femi-search.svg');
   background-repeat: no-repeat;
   background-position: center;
   background-size: 20px;
@@ -552,7 +548,7 @@ header nav .nav-tools button.nav-search-button {
 /* signed-out account button: Figma user icon (svg kept for its accessible label) */
 header nav .nav-tools .nav-dropdown-button:has(svg) {
   min-width: 32px;
-  background: url('../../icons/f9-user.svg') center / 24px no-repeat;
+  background: url('../../icons/femi-user.svg') center / 24px no-repeat;
 }
 
 header nav .nav-tools .nav-dropdown-button svg {
